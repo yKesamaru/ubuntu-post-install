@@ -26,8 +26,9 @@ function echo_message(){
 			*) color=7 ;;
 		esac
 	fi
+	# tput: [【シェル芸奥義】tputを使ってみる](https://qiita.com/onokatio/items/5d282b72ac5565ae4569)
 	tput bold;
 	tput setaf $color;
 	echo '-- '$message;
-	tput sgr0;
+	tput sgr0; # 装飾解除
 }

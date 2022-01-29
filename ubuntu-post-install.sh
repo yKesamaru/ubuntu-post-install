@@ -1,4 +1,6 @@
-#!/bin/bash
+
+
+
 # -*- Mode: sh; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 #
 # Authors:
@@ -28,10 +30,15 @@ clear
 # Title of script set
 TITLE="Ubuntu Post-Install Script"
 
+# [environ - 約束事その他の説明 - Linux コマンド集 一覧表](https://kazmax.zpp.jp/cmd/e/environ.7.html)
+# 予約変数: COLUMNS と LINES アプリケーションにウインドウのサイズを伝える。 実際のサイズとは違う値を与えることもできる。
+
 # Main
 function main {
 	echo_message header "Starting 'main' function"
 	# Draw window
+	# [[端末エミュレータ] ウィンドウのサイズを変更する](https://docs.oracle.com/cd/E19683-01/816-3942/usingtermemulators-proc-31/index.html)
+	# eval `resize`
 	MAIN=$(eval `resize` && whiptail \
 		--notags \
 		--title "$TITLE" \
@@ -52,7 +59,9 @@ function main {
 		'system_configure'      'Configure system' \
 		'system_cleanup'        'Cleanup the system' \
 		3>&1 1>&2 2>&3)
+		# [出力先などを特定のファイルディスクリプタに送りたい場合は「&ファイル・ディスクリプタ」とする](http://to-developer.com/blog/?p=1001)
 	# check exit status
+	# [$?: 直前に実行したコマンドの終了ステータス。0は成功、0以外は失敗](https://www.tohoho-web.com/ex/shell.html)
 	if [ $? = 0 ]; then
 		echo_message header "Starting '$MAIN' function"
 		$MAIN

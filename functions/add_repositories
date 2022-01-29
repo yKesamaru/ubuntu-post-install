@@ -8,6 +8,15 @@
 # ${4} = list-name (derived from package-name)
 # ${5} = return_function
 
+# ---------------------------------------------------
+# 例 /etc/apt/sources.list, /etc/apt/sources.list.d/*.list, /etc/apt/sources.list.d/*.list.save
+# [What is sources list Save?](https://frameboxxindore.com/linux/best-answer-what-is-source-list-ubuntu.html)
+# > list. save file is a backup of the sources.
+# deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+# deb [arch=amd64,arm64,armhf] http://packages.microsoft.com/repos/code stable main
+# [Ubuntu manual](http://manpages.ubuntu.com/manpages/trusty/ja/man5/sources.list.5.html)
+# ---------------------------------------------------
+
 function add_apt_repo() {
 	echo_message header "Starting 'add_apt_repo' function"
 	# Check if already added
