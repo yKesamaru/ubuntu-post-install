@@ -1,5 +1,5 @@
-
-
+#!/usr/bin/env bash
+# set -Ceuo pipefail
 
 # -*- Mode: sh; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 #
@@ -24,8 +24,10 @@
 # this program; if not, see <https://www.gnu.org/licenses/gpl-3.0.txt>
 
 # tab width
-tabs 4
-clear
+# tabs 4
+# clear
+
+echo 'kore: ' $(pwd)
 
 # Title of script set
 TITLE="Ubuntu Post-Install Script"
@@ -86,17 +88,27 @@ function quit {
 
 # Import Functions
 function import_functions {
+	# For Debug
+	DEB="/home/terms/ドキュメント/Re-install_box/システムを再インストールした際の復旧の為のマニュアル_2021年3月27日/ubuntu-post-install"
 	DIR="functions"
 	# iterate through the files in the 'functions' folder
-	for FUNCTION in $(dirname "$0")/$DIR/*; do
+	# for FUNCTION in $(dirname "$0")/$DIR/*; do
+	for FUNCTION in $DEB/$DIR/*; do
 		# skip directories
 		if [[ -d $FUNCTION ]]; then
 			continue
 		# exclude markdown readmes
 		elif [[ $FUNCTION == *.md ]]; then
 			continue
+		elif [[ $FUNCTION == \/usr\/bin* ]]; then
+			continue
+		# elif [[ $FUNCTION == *home* ]]; then
+		# 	continue
+		elif [[ $FUNCTION == *vscode\/* ]]; then
+			continue
 		elif [[ -f $FUNCTION ]]; then
 			# source the function file
+			# [ドット組込みコマンドはテキストファイルを開いて、その内容をコマンドとして解釈し実行します。](https://yash.osdn.jp/doc/ja/_dot.html)
 			. $FUNCTION
 		fi
 	done
